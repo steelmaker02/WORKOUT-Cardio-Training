@@ -1,0 +1,1448 @@
+/* 1. Variablen und Einstellungen */
+:root {
+    /* Farbpalette */
+    --color-primary: #3FD47D;
+    --color-primary-dark: #2FB869;
+    --color-primary-light: #5FE099;
+    --color-secondary: #FF6B6B;
+    --color-background: #0A0A0A;
+    --color-surface: #1A1A1A;
+    --color-surface-light: #252525;
+    --color-text: #FFFFFF;
+    --color-text-secondary: #B0B0B0;
+    --color-text-muted: #707070;
+    --color-border: #2A2A2A;
+
+    /* Typografie */
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Abstände */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Rahmenradius */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+
+    /* Übergänge */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Schatten */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. Schriftarten */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/poppins-v24-latin-regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    src: url('fonts/poppins-v24-latin-600.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* 3. Reset und Basis-Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    /* Versatz für fixierten Header */
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    transition: var(--transition-fast);
+}
+
+/* Fokus-Stile für Barrierefreiheit */
+*:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+}
+
+/* 4. Globale Hilfsklassen und Komponenten */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Buttons (Global) */
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    /* Fix damit Links wie Buttons aussehen */
+    text-align: center;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-background);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(63, 212, 125, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--color-text-secondary);
+    color: var(--color-text);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* Abschnittsüberschriften (Global) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.section-title {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+}
+
+.view-all {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    transition: var(--transition-fast);
+}
+
+.view-all:hover {
+    color: var(--color-primary);
+}
+
+/* 5. Header und Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition-normal);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menü */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.5rem;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: var(--transition-normal);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 6. Hero Sektion */
+.hero {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 0 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /*gap: 4rem;*/
+    gap: 0;
+    align-items: center;
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease;
+    position: relative;
+    /* Обязательно для работы z-index */
+    z-index: 1;
+    /* Текст на заднем плане */
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1s ease 0.2s backwards;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-title {
+    font-size: clamp(5rem, 15vw, 13rem);
+    font-weight: 600;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 1s ease 0.3s backwards;
+}
+
+.hero-text {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 540px;
+    animation: fadeInUp 1s ease 0.4s backwards;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.5s backwards;
+}
+
+.hero-image {
+    position: relative;
+    animation: fadeInRight 1s ease 0.6s backwards;
+    z-index: 2;
+    /* Картинка поверх текста */
+    margin-left: -30%;
+    /* Тянем весь блок с девушкой влево на текст */
+    pointer-events: none;
+    /* Чтобы сквозь прозрачную часть картинки можно было выделить текст (опционально) */
+}
+
+.hero-image img {
+    width: 120%;
+    height: auto;
+    filter: drop-shadow(0 20px 50px rgba(63, 212, 125, 0.3));
+    position: relative;
+    z-index: 2;
+    margin-left: -10%;
+}
+
+.hero-stats {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 3;
+}
+
+.stat-box {
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    min-width: 120px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.stat-box.stat-time {
+    animation-delay: 0s;
+}
+
+.stat-box.stat-heart {
+    animation-delay: 0.5s;
+}
+
+.stat-box.stat-time .stat-value {
+    color: #F5D547;
+}
+
+.stat-box.stat-heart .stat-value {
+    color: #FF4D7D;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+/* 7. Sektion: Beliebte Übungen */
+.beliebte-ubungen {
+    padding: 3rem 0;
+    background: var(--color-background);
+}
+
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.exercise-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+}
+
+.exercise-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.exercise-card:hover {
+    transform: translateY(-8px);
+}
+
+.exercise-card:hover img {
+    transform: scale(1.1);
+}
+
+.exercise-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.exercise-overlay h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.duration {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* 8. Sektion: Workout Plan (Trainer) */
+.workout-plan {
+    padding: 6rem 0;
+    background: var(--color-surface);
+}
+
+.workout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.workout-title {
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+}
+
+.workout-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: 8px;
+    background: #F5D547;
+    margin-top: 1rem;
+}
+
+.trainers-small {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.trainer-small-card {
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+}
+
+.trainer-small-card:hover {
+    transform: scale(1.05);
+}
+
+.trainer-small-card img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.75rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.trainer-small-card p {
+    font-weight: 600;
+    text-align: center;
+}
+
+.workout-right {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.workout-description p {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.main-trainer {
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+}
+
+.main-trainer:hover {
+    transform: scale(1.02);
+}
+
+.main-trainer img {
+    width: 100%;
+    border-radius: var(--radius-xl);
+    aspect-ratio: 16/12;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.main-trainer p {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    backdrop-filter: blur(10px);
+}
+
+/* 9. Sektion: Trainingsvideos (Akkordeon) */
+.training-accordion {
+    padding: 6rem 0;
+    background: var(--color-background);
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--color-border);
+    transition: all var(--transition-normal);
+}
+
+.accordion-item:hover {
+    background: rgba(63, 212, 125, 0.02);
+}
+
+.accordion-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem 0;
+    cursor: pointer;
+}
+
+.accordion-number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.accordion-header h3 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.accordion-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+.accordion-toggle {
+    font-size: 2rem;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-normal);
+}
+
+.accordion-item.active .accordion-toggle {
+    transform: rotate(90deg);
+    color: var(--color-primary);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 800px;
+    padding-bottom: 2rem;
+}
+
+.video-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-left: 4rem;
+}
+
+.video-list li {
+    padding: 1rem 1rem 1rem 3rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-primary);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+}
+
+.video-list li::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent #B0B0B0;
+}
+
+.video-list li:hover::before {
+    border-color: transparent transparent transparent var(--color-primary);
+}
+
+.video-list li:hover {
+    background: var(--color-surface-light);
+    transform: translateX(8px);
+}
+
+/* 10. Sektion: Preise */
+.pricing {
+    padding: 6rem 0;
+    background: var(--color-surface);
+}
+
+.pricing-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.toggle-btn {
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 2px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+}
+
+.toggle-btn.active {
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+.toggle-btn:hover {
+    border-color: var(--color-primary);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.pricing-card {
+    background: var(--color-surface-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    position: relative;
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.8s ease backwards;
+}
+
+/* Verzögerung der Preiskarten */
+.pricing-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.pricing-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.pricing-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.pricing-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.featured {
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.08) translateY(-8px);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--color-secondary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transform: rotate(3deg);
+}
+
+.plan-badge {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-card.featured .plan-badge {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.plan-price {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.currency {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.amount {
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-top: 2rem;
+}
+
+.pricing-card.featured .period {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.plan-features {
+    margin-bottom: 2rem;
+}
+
+.plan-features li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+}
+
+.pricing-card.featured .plan-features li {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.plan-features li:last-child {
+    border-bottom: none;
+}
+
+/* Spezifische Button-Stile für Preise */
+.btn-plan {
+    width: 100%;
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+}
+
+.btn-plan:hover {
+    background: var(--color-primary);
+    color: var(--color-background);
+}
+
+.pricing-card.featured .btn-plan {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border-color: var(--color-background);
+}
+
+.pricing-card.featured .btn-plan:hover {
+    background: transparent;
+    color: var(--color-background);
+    border-color: var(--color-background);
+}
+
+/* 11. Sektion: Newsletter */
+.newsletter {
+    padding: 4rem 0;
+    background: var(--color-primary);
+    color: var(--color-background);
+}
+
+.newsletter-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.newsletter-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.newsletter-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 1.2rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    background: white;
+    color: var(--color-background);
+}
+
+.newsletter-form input::placeholder {
+    color: #999;
+}
+
+.newsletter-form .btn {
+    white-space: nowrap;
+    background: var(--color-background);
+    color: var(--color-primary);
+}
+
+.newsletter-form .btn:hover {
+    background: var(--color-surface);
+}
+
+/* 12. Footer */
+.footer {
+    background: var(--color-surface);
+    padding: 6rem 0 0;
+    /* Mehr Padding oben, unten 0 weil footer-bottom Padding hat */
+    border-top: 1px solid var(--color-border);
+    /* Visuelle Trennung zum Content */
+}
+
+.footer-grid {
+    display: grid;
+    /* Spaltenaufteilung: Brand bekommt mehr Platz, Rest gleichmäßig */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 4rem;
+    /* Größerer Abstand zwischen Spalten für Eleganz */
+    margin-bottom: 4rem;
+}
+
+/* Brand Bereich Styling */
+.footer-brand .logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    /* Logo etwas größer */
+}
+
+.footer-brand p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 320px;
+    /* Begrenzt Textbreite für Lesbarkeit */
+}
+
+/* Social Icons verfeinert */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    width: 44px;
+    /* Etwas größer für bessere Klickfläche */
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtilerer Hintergrund */
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-normal);
+}
+
+.social-icons a:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(63, 212, 125, 0.3);
+}
+
+/* Links Spalten Styling */
+.footer-links h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    /* Gleicht Höhe optisch an Logo an */
+}
+
+.footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    /* Gleichmäßiger Abstand zwischen Links */
+}
+
+.footer-links a {
+    color: var(--color-text-secondary);
+    transition: var(--transition-fast);
+    display: inline-block;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+    padding-left: 5px;
+}
+
+/* Neuer Sub-Footer für Copyright */
+.footer-bottom {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* Responsive Anpassungen für Footer */
+@media (max-width: 64rem) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        /* Brand nimmt volle Breite oben ein */
+        max-width: 500px;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 30rem) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-brand {
+        margin: 0 auto;
+    }
+
+    .footer-links a:hover {
+        padding-left: 0;
+        /* Kein Einrücken auf Mobile */
+        color: var(--color-primary);
+    }
+}
+
+/* 13. Modals (Trainer) */
+.trainer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.trainer-modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 2001;
+    animation: slideUp 0.4s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-surface-light);
+    color: var(--color-text);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--color-primary);
+    color: var(--color-background);
+}
+
+.modal-body h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-body .trainer-specialty {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.modal-body p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.modal-body .trainer-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.modal-body .stat {
+    text-align: center;
+}
+
+.modal-body .stat-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.modal-body .stat-label {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 14. Animationen */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 15. Media Queries (Responsiv) */
+/* Tablet & Kleine Laptops (1024px) */
+@media (max-width: 64rem) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--color-surface);
+        flex-direction: column;
+        padding: 3rem 2rem;
+        gap: 2rem;
+        transition: right var(--transition-normal);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hero Sektion */
+    .hero .container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 0 0 2rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        margin-top: 0;
+        line-height: 1.1;
+    }
+
+    .hero-badge,
+    .hero-stats {
+        display: none;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-text {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-image {
+        order: -1;
+        max-width: 55%;
+        margin: 0 auto -3rem;
+        display: block;
+    }
+
+    .hero-image img {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Rasteranpassungen */
+    .exercises-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .workout-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .workout-title::after {
+        margin: 1rem auto 0;
+    }
+
+    .trainers-small {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .main-trainer {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .main-trainer p {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 1.5rem;
+        width: 90%;
+        text-align: center;
+    }
+
+    .accordion-header {
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem;
+    }
+
+    .accordion-subtitle {
+        display: none;
+    }
+
+    .video-list {
+        grid-template-columns: 1fr;
+        padding-left: 0;
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+
+    .newsletter-form {
+        max-width: 100%;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+
+    .footer-brand p {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* Handy (480px) */
+@media (max-width: 30rem) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-image {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+        margin-bottom: -2.5rem;
+    }
+
+    .exercises-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-links a:hover {
+        padding-left: 0;
+    }
+
+    .accordion-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+}

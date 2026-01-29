@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout — Cardio Training</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="home">
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">WORKOUT</a>
+                <button class="hamburger" id="hamburger" aria-label="Menu öffnen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#beliebte-ubungen">Übungen</a></li>
+                    <li><a href="#workout-plan">Trainer</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#preise">Preise</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Bereich -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Werden Sie ein besseres Ich mit uns, abonnieren Sie!</div>
+                <h1 class="hero-title">
+                    Cardio<br>
+                    Training
+                </h1>
+                <p class="hero-text">
+                    Cardio-Training verbessert Ihre Herz-Kreislauf-Gesundheit, erhöht Ihre Ausdauer und hilft bei der
+                    Gewichtskontrolle durch effektive Kalorienverbrennung für jeden Fitness-Level
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Kostenlos testen</button>
+                    <button class="btn btn-secondary">Mehr sehen</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-girl.png" alt="Fitness Trainerin beim Cardio Training">
+                <div class="hero-stats">
+                    <div class="stat-box stat-time">
+                        <div class="stat-value">38:14</div>
+                        <div class="stat-label">Zeit</div>
+                    </div>
+                    <div class="stat-box stat-heart">
+                        <div class="stat-value">165</div>
+                        <div class="stat-label">Kalorien</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Beliebte Übungen -->
+        <section id="beliebte-ubungen" class="beliebte-ubungen">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Beliebte Übungen</h2>
+                    <a href="#" class="view-all">Alle 28 Übungen sehen →</a>
+                </div>
+                <div class="exercises-grid">
+                    <div class="exercise-card" data-duration="14:2">
+                        <img src="images/ex-treadmill.jpg" alt="Laufband Training">
+                        <div class="exercise-overlay">
+                            <h3>Laufband</h3>
+                            <span class="duration">14:32</span>
+                        </div>
+                    </div>
+                    <div class="exercise-card" data-duration="18:13">
+                        <img src="images/ex-stretch.jpg" alt="Dehnen Übungen">
+                        <div class="exercise-overlay">
+                            <h3>Dehnen</h3>
+                            <span class="duration">18:13</span>
+                        </div>
+                    </div>
+                    <div class="exercise-card" data-duration="25:22">
+                        <img src="images/ex-yoga.jpg" alt="Yoga Training">
+                        <div class="exercise-overlay">
+                            <h3>Yoga</h3>
+                            <span class="duration">25:22</span>
+                        </div>
+                    </div>
+                    <div class="exercise-card" data-duration="54:41">
+                        <img src="images/ex-run.jpg" alt="Laufen im Freien">
+                        <div class="exercise-overlay">
+                            <h3>Laufen</h3>
+                            <span class="duration">54:41</span>
+                        </div>
+                    </div>
+                    <div class="exercise-card" data-duration="28:11">
+                        <img src="images/ex-weights.jpg" alt="Gewichte Training">
+                        <div class="exercise-overlay">
+                            <h3>Weights</h3>
+                            <span class="duration">28:11</span>
+                        </div>
+                    </div>
+                    <div class="exercise-card" data-duration="10:23">
+                        <img src="images/ex-pushup.jpg" alt="Liegestütze">
+                        <div class="exercise-overlay">
+                            <h3>Pushup</h3>
+                            <span class="duration">10:23</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workout Plan -->
+        <section id="workout-plan" class="workout-plan">
+            <div class="container">
+                <div class="workout-grid">
+                    <div class="workout-left">
+                        <h2 class="workout-title">
+                            Workout<br>
+                            Plan<br>
+                            Nur<br>
+                            Für Dich
+                        </h2>
+                        <div class="trainers-small">
+                            <div class="trainer-small-card" data-trainer="samantha">
+                                <img src="images/trainer-female-1.jpg" alt="Samantha William">
+                                <p>Samantha William</p>
+                            </div>
+                            <div class="trainer-small-card" data-trainer="karen">
+                                <img src="images/trainer-female-2.jpg" alt="Karen Summer">
+                                <p>Karen Summer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workout-right">
+                        <div class="workout-description">
+                            <p>
+                                Individuelle Trainingspläne, abgestimmt auf Ihre Ziele, Ihren Fitnesslevel und Ihre
+                                Bedürfnisse. Unser Team entwickelt das optimale Programm für Ihren Erfolg.
+                            </p>
+                            <button class="btn btn-primary">Starten Sie jetzt</button>
+                        </div>
+                        <div class="main-trainer" data-trainer="jonathan">
+                            <img src="images/trainer-main.jpg" alt="Jonathan Wise Personal Trainer">
+                            <p>Jonathan Wise</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Training zu Hause (Akkordeon) -->
+        <section id="training" class="training-accordion">
+            <div class="container">
+                <div class="accordion-item" data-index="1">
+                    <div class="accordion-header">
+                        <div class="accordion-number">01</div>
+                        <h3>Training zu Hause</h3>
+                        <div class="accordion-subtitle">12 Videos</div>
+                        <button class="accordion-toggle" aria-label="Erweitern">→</button>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="video-list">
+                            <li>Ganzkörper-Workout ohne Geräte (15 Min)</li>
+                            <li>HIIT Training für Anfänger (20 Min)</li>
+                            <li>Bauchmuskel-Routine (10 Min)</li>
+                            <li>Cardio-Dance Workout (25 Min)</li>
+                            <li>Yoga für Flexibilität (30 Min)</li>
+                            <li>Krafttraining mit Körpergewicht (18 Min)</li>
+                            <li>Rückentraining zu Hause (12 Min)</li>
+                            <li>Bein- und Po-Workout (22 Min)</li>
+                            <li>Mobilitäts-Routine (15 Min)</li>
+                            <li>Core-Stabilität Training (14 Min)</li>
+                            <li>Schulter- und Arm-Workout (16 Min)</li>
+                            <li>Cool-Down und Stretching (10 Min)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-index="2">
+                    <div class="accordion-header">
+                        <div class="accordion-number">02</div>
+                        <h3>Stark und fit bleiben</h3>
+                        <div class="accordion-subtitle">15 Videos</div>
+                        <button class="accordion-toggle" aria-label="Erweitern">→</button>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="video-list">
+                            <li>Kraftaufbau für Einsteiger (20 Min)</li>
+                            <li>Hantel-Training Grundlagen (25 Min)</li>
+                            <li>Kettlebell-Workout (18 Min)</li>
+                            <li>Functional Training (22 Min)</li>
+                            <li>TRX-Bänder Training (20 Min)</li>
+                            <li>Calisthenics Basics (30 Min)</li>
+                            <li>Langhantel-Technik (15 Min)</li>
+                            <li>Muskelaufbau Oberkörper (28 Min)</li>
+                            <li>Beinpresse-Technik (12 Min)</li>
+                            <li>Kreuzheben richtig lernen (20 Min)</li>
+                            <li>Bankdrücken-Tutorial (18 Min)</li>
+                            <li>Kniebeugen perfektionieren (16 Min)</li>
+                            <li>Ganzkörper-Krafttraining (35 Min)</li>
+                            <li>Supersatz-Methode (25 Min)</li>
+                            <li>Progressive Überlastung (22 Min)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-index="3">
+                    <div class="accordion-header">
+                        <div class="accordion-number">03</div>
+                        <h3>Hohe Intensität</h3>
+                        <div class="accordion-subtitle">10 Videos</div>
+                        <button class="accordion-toggle" aria-label="Erweitern">→</button>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="video-list">
+                            <li>HIIT Burner Workout (20 Min)</li>
+                            <li>Tabata Training Extrem (15 Min)</li>
+                            <li>Sprints und Plyometrie (18 Min)</li>
+                            <li>Metabolic Conditioning (25 Min)</li>
+                            <li>Cardio-Kickboxing (22 Min)</li>
+                            <li>Battle Ropes Workout (12 Min)</li>
+                            <li>Jump-Training (16 Min)</li>
+                            <li>CrossFit WOD (30 Min)</li>
+                            <li>Intensive Intervalle (20 Min)</li>
+                            <li>Fat Burning Circuit (28 Min)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-index="4">
+                    <div class="accordion-header">
+                        <div class="accordion-number">04</div>
+                        <h3>Einfaches Training</h3>
+                        <div class="accordion-subtitle">14 Videos</div>
+                        <button class="accordion-toggle" aria-label="Erweitern">→</button>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="video-list">
+                            <li>Sanfte Morgengymnastik (12 Min)</li>
+                            <li>Walking für Anfänger (20 Min)</li>
+                            <li>Stuhl-Yoga (15 Min)</li>
+                            <li>Leichtes Stretching (10 Min)</li>
+                            <li>Balance-Training (14 Min)</li>
+                            <li>Atem-Übungen (8 Min)</li>
+                            <li>Mobility für Senioren (18 Min)</li>
+                            <li>Pilates Basics (22 Min)</li>
+                            <li>Entspannungs-Routine (15 Min)</li>
+                            <li>Gelenk-Mobilisation (12 Min)</li>
+                            <li>Faszien-Training (16 Min)</li>
+                            <li>Regenerations-Workout (20 Min)</li>
+                            <li>Meditation und Bewegung (25 Min)</li>
+                            <li>Wellness-Stretching (18 Min)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item" data-index="5">
+                    <div class="accordion-header">
+                        <div class="accordion-number">05</div>
+                        <h3>Kalorien verbrennen</h3>
+                        <div class="accordion-subtitle">18 Videos</div>
+                        <button class="accordion-toggle" aria-label="Erweitern">→</button>
+                    </div>
+                    <div class="accordion-content">
+                        <ul class="video-list">
+                            <li>Fettverbrennung Turbo (30 Min)</li>
+                            <li>Spinning-Class Simulation (45 Min)</li>
+                            <li>Aerobic Classics (35 Min)</li>
+                            <li>Zumba-Style Dance (40 Min)</li>
+                            <li>Lauf-Intervalle (25 Min)</li>
+                            <li>Rowing Machine Workout (20 Min)</li>
+                            <li>Ellipsentrainer-Programm (30 Min)</li>
+                            <li>Treppensteigen Workout (18 Min)</li>
+                            <li>Boxen und Cardio (28 Min)</li>
+                            <li>Seilspringen-Intervalle (15 Min)</li>
+                            <li>Schwimm-Technik (35 Min)</li>
+                            <li>Radfahren Indoor (40 Min)</li>
+                            <li>Marathon-Vorbereitung (50 Min)</li>
+                            <li>Mixed Cardio (32 Min)</li>
+                            <li>High-Energy Dance (26 Min)</li>
+                            <li>Cardio-Sculpt (30 Min)</li>
+                            <li>Bootcamp-Style (38 Min)</li>
+                            <li>Ultimate Fat Burner (42 Min)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preise -->
+        <section id="preise" class="pricing">
+            <div class="container">
+                <h2 class="section-title">
+                    Unsere<br>
+                    Trainingspakete
+                </h2>
+                <div class="pricing-toggle">
+                    <button class="toggle-btn active" data-period="monthly">Monatlich abrechnen</button>
+                    <button class="toggle-btn" data-period="yearly">Jährlich</button>
+                </div>
+                <div class="pricing-grid">
+                    <!-- Basis Paket -->
+                    <div class="pricing-card" data-plan="basic">
+                        <div class="plan-badge">Basis Paket</div>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">25</span>
+                            <span class="period">/Monat</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✓ Zugang zum Gym</li>
+                            <li>✓ Umkleideraum</li>
+                            <li>✓ 24 Stunden Zugang</li>
+                            <li>✓ Keine Vertragsbindung</li>
+                            <li>✓ 2 Tage Freeze</li>
+                        </ul>
+                        <button class="btn btn-plan">Jetzt starten</button>
+                    </div>
+
+                    <!-- Premium Paket -->
+                    <div class="pricing-card featured" data-plan="premium">
+                        <div class="featured-badge">Top Angebot</div>
+                        <div class="plan-badge">Premium Paket</div>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">55</span>
+                            <span class="period">/Monat</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✓ Alle Basis-Vorteile</li>
+                            <li>✓ Gruppenkurse</li>
+                            <li>✓ 1 Gratis PT-Sitzung</li>
+                            <li>✓ Online-Kurse</li>
+                            <li>✓ 5 Tage Freeze</li>
+                            <li>✓ Ernährungsberatung</li>
+                        </ul>
+                        <button class="btn btn-plan">Jetzt starten</button>
+                    </div>
+
+                    <!-- Pro Paket -->
+                    <div class="pricing-card" data-plan="pro">
+                        <div class="plan-badge">Pro Paket</div>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">75</span>
+                            <span class="period">/Monat</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✓ Alle Premium-Vorteile</li>
+                            <li>✓ 2 PT-Sitzungen/Monat</li>
+                            <li>✓ 4 Gruppenkurse/Woche</li>
+                            <li>✓ Sauna Zugang</li>
+                            <li>✓ Premium-Lagging</li>
+                        </ul>
+                        <button class="btn btn-plan">Jetzt starten</button>
+                    </div>
+
+                    <!-- Elite Paket -->
+                    <div class="pricing-card" data-plan="elite">
+                        <div class="plan-badge">Elite Paket</div>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">105</span>
+                            <span class="period">/Monat</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✓ Alle Pro-Vorteile</li>
+                            <li>✓ Unbegrenzte PT-Sitzungen</li>
+                            <li>✓ Massagen inkl.</li>
+                            <li>✓ 7 Tage Freeze</li>
+                            <li>✓ Individueller Trainingsplan</li>
+                            <li>✓ Exklusive Events</li>
+                        </ul>
+                        <button class="btn btn-plan">Jetzt starten</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Abonniere unsere Fitness-Tipps</h2>
+                    <p>Erhalten Sie wöchentlich Trainingspläne und Ernährungstipps</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Ihre E-Mail-Adresse eingeben" required>
+                        <button type="submit" class="btn btn-primary">Abonnieren</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontakt">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">WORKOUT</a>
+                    <p>Ihr Premium Fitness-Studio für nachhaltigen Erfolg und ganzheitliches Training.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="footer-links">
+                    <h4>Übungen</h4>
+                    <ul>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Laufband</a></li>
+                        <li><a href="#">Cardio & Kraft</a></li>
+                        <li><a href="#">Alle Übungen</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Hilfe</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+    
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="#">Impressum</a></li>
+                        <li><a href="#">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Workout. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Trainer Modal -->
+    <div class="trainer-modal" id="trainerModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamischer Inhalt wird hier eingefügt -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
